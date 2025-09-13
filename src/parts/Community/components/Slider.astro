@@ -11,7 +11,42 @@ const { className } = Astro.props;
   <img class="slide" id="community-slide-up" src="/community-slides/show/0.webp" alt="" />
 </div>
 
+<script>
+  const IMAGE_COUNT = 8;
+  let currentSlide = 0;
+
+  const slideUp: HTMLImageElement = document.querySelector("#community-slide-up")!;
+  const slideDown: HTMLImageElement = document.querySelector("#community-slide-down")!;
+
+  function nextSlide() {
+    function prepare() {
+      slideUp.src = slideDown.src;
+      slideUp.style.animationName = "unset";
+      currentSlide++;
+      if (currentSlide >= IMAGE_COUNT) {
+        currentSlide = 0;
+      }
+      slideDown.src = `/community-slides/show/${currentSlide}.webp`;
+    }
+
+    slideUp.style.animationName = "appear";
+    slideUp.addEventListener("animationend", prepare, { once: true });
+  }
+
+  window.addEventListener("load", () => {
+    setInterval(nextSlide, 5000);
+  });
+</script>
+
 <style>
+  @keyframes appear {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
   #community-slides {
     width: 700px;
     position: relative;
