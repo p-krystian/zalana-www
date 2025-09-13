@@ -29,7 +29,12 @@ import Minecraft from "../parts/Minecraft/Minecraft.astro";
     <NotifyArea />
     <main>
       <Header id="top" />
-      <Navigation toTop="#top" toCommunity="#spolecznosc" toRadio="#radio" toMinecraft="#minecraft" />
+      <Navigation
+        toTop="#top"
+        toCommunity="#spolecznosc"
+        toRadio="#radio"
+        toMinecraft="#minecraft"
+      />
 
       <Community id="spolecznosc" />
       <Radio id="radio" />
@@ -40,6 +45,35 @@ import Minecraft from "../parts/Minecraft/Minecraft.astro";
     <div id="backload"></div>
   </body>
 </html>
+
+<script>
+  const mainElement = document.querySelector("main")!;
+  let siteHeight = mainElement.scrollHeight - window.innerHeight;
+
+  function updateScrollPercent() {
+    const progress = Math.round((mainElement.scrollTop / siteHeight) * 100);
+    mainElement.style.setProperty("--scrolled", `${progress}%`);
+  }
+  function scrollTo(element: Element, event: Event) {
+    event.preventDefault();
+    const targetID = element.getAttribute("href");
+    const targetElement = targetID ? document.querySelector(targetID) : null;
+    targetElement?.scrollIntoView(false);
+  }
+
+  window.addEventListener("resize", () => {
+    siteHeight = mainElement.scrollHeight - window.innerHeight;
+    updateScrollPercent();
+  });
+  mainElement.addEventListener("scroll", updateScrollPercent);
+
+  window.addEventListener("load", () => {
+    updateScrollPercent();
+    document.querySelectorAll('a[href^="#"]').forEach((a) => {
+      a.addEventListener("click", (event) => scrollTo(a, event));
+    });
+  });
+</script>
 
 <style is:global>
   @import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@500&family=Ubuntu:wght@300&display=swap");
@@ -115,6 +149,8 @@ import Minecraft from "../parts/Minecraft/Minecraft.astro";
     min-width: 350px;
   }
   main {
+    --scrolled: 0%;
+
     scroll-snap-type: y proximity;
     overflow-y: scroll;
     scroll-behavior: smooth;

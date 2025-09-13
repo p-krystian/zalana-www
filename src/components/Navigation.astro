@@ -16,7 +16,7 @@ const { toTop, toCommunity, toRadio, toMinecraft } = Astro.props;
     <img src={zalanaSVG.src} alt="" />
     <span>Zalana&nbsp;</span>Witryna
   </a>
-  <div class="links">
+  <div class="links" role="navigation">
     <a href={toCommunity}>Gumciaczki</a>
     <a href={toRadio}>Radio</a>
     <a href={toMinecraft}>Minecraft</a>
@@ -26,10 +26,10 @@ const { toTop, toCommunity, toRadio, toMinecraft } = Astro.props;
     <div class="line"></div>
     <div class="line"></div>
   </button>
-  <div class="scroll-progress">
+  <div class="scroll-progress" aria-hidden="true">
     <div class="scroll-bar"></div>
   </div>
-  <div class="menu" aria-expanded="false">
+  <div class="menu" role="navigation" aria-expanded="false">
     <a href={toCommunity}>Gumciaczki</a>
     <a href={toRadio}>Radio</a>
     <a href={toMinecraft}>Minecraft</a>
@@ -117,7 +117,7 @@ const { toTop, toCommunity, toRadio, toMinecraft } = Astro.props;
     grid-area: menu;
     min-width: 50vw;
     height: calc(100vh - 70px);
-     height: calc(100dvh - 70px);
+    height: calc(100dvh - 70px);
     padding: 20px;
     padding-left: 30px;
     /* display: flex; */
@@ -152,7 +152,7 @@ const { toTop, toCommunity, toRadio, toMinecraft } = Astro.props;
   }
   .scroll-bar {
     position: relative;
-    width: 0;
+    width: var(--scrolled);
     height: 100%;
     background-size: 300%;
     background-attachment: fixed;
