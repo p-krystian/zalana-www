@@ -1,0 +1,48 @@
+---
+interface Props {
+  className?: string;
+}
+
+const { className } = Astro.props;
+---
+
+<div class:list={["c-desc", className]}>
+  <span>
+    Gumciaczki to movement, najaktywniejsi członkowie Zalanej Piwnicy. Głównie przesiadujemy nocami,
+    by za dnia móc sprawiać pozory, choć nie ograniczamy się do spędzania czasu wyłącznie zdalnie.
+    Mimo różnic zawsze odnajdujemy wspólny język. Wspólnie tworzymy różne projekty i pomagamy sobie
+    nawzajem. Co jakiś czas organizujemy wydarzenia w kooperacji z innymi serwerami, by móc razem
+    się integrować.<br />
+    Oprócz tego bardzo dobrze potrafimy jednoczyć się w grach. Wspólnie kłamiemy w AmongUs, zabijamy
+    w Counter Strike 2, budujemy w Minecraft czy walczymy w Brawlhalla. Dołączenie do nas nie jest trudne,
+    jeśli to czytasz, to prawdopodobnie już wiesz, którędy droga.
+  </span>
+</div>
+
+<style>
+  .c-desc {
+    width: 100%;
+    height: 100%;
+    cursor: default;
+  }
+  .c-desc span {
+    width: 100%;
+    height: 100%;
+    font-family: Ubuntu;
+    font-size: min(2.2vw, 44px);
+    padding: min(4vw, 8px);
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    text-shadow: 0.1vw 0.1vw 0.1vw #000;
+  }
+
+  @media (max-width: 500px) {
+    .c-desc span {
+      font-size: 3.2vw;
+      padding: 8vw 3vw;
+      align-items: flex-end;
+    }
+  }
+</style>

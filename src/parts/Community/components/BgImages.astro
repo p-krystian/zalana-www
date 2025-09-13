@@ -1,0 +1,56 @@
+---
+import Slider from "./Slider.astro";
+
+interface Props {
+  className?: string;
+}
+
+const { className } = Astro.props;
+---
+
+<div class:list={["c-imgs", className]}>
+  <img class="template" data-src="/community-slides/among.webp" alt="" />
+  <img class="template" data-src="/community-slides/brawl.webp" alt="" />
+  <img class="template" data-src="/community-slides/mine.webp" alt="" />
+
+  <img class="template" data-src="/community-slides/sot.webp" alt="" />
+  <Slider className="template" />
+  <img class="template" data-src="/community-slides/csgo.webp" alt="" />
+
+  <img class="template" data-src="/community-slides/codwz.webp" alt="" />
+  <img class="template" data-src="/community-slides/gta5.webp" alt="" />
+  <img class="template" data-src="/community-slides/has.webp" alt="" />
+</div>
+
+<style>
+  .c-imgs {
+    width: 1920px;
+    height: 900px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
+  }
+  .c-imgs :global(.template) {
+    width: 500px;
+    aspect-ratio: 16/9;
+    border-radius: 50px;
+    box-shadow: -6px 6px 15px 0 #000;
+  }
+
+  @media (max-width: 500px) {
+    .c-imgs {
+      width: 100%;
+      height: calc(100% - 45vw);
+      gap: unset;
+    }
+    .c-imgs > img {
+      display: none;
+    }
+    .c-imgs :global(.template) {
+      width: auto;
+      box-shadow: -3px 3px 8px 0 #000;
+    }
+  }
+</style>

@@ -1,0 +1,43 @@
+---
+interface Props {
+  className?: string;
+}
+
+const { className } = Astro.props;
+---
+
+<div class={className} id="community-slides">
+  <img class="slide" id="community-slide-down" src="/community-slides/show/1.webp" alt="" />
+  <img class="slide" id="community-slide-up" src="/community-slides/show/0.webp" alt="" />
+</div>
+
+<style>
+  #community-slides {
+    width: 700px;
+    position: relative;
+  }
+  #community-slide-up {
+    box-shadow: none;
+    animation-duration: 0.5s;
+    animation-direction: reverse;
+    animation-fill-mode: both;
+  }
+  .slide {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: absolute;
+    border-radius: 50px;
+    box-shadow: -1px 1px 30px 0 #000;
+  }
+  @media (max-width: 500px) {
+    #community-slides {
+      display: block;
+      width: 90vw;
+    }
+    .slide {
+      border-radius: 20px;
+    }
+  }
+</style>
