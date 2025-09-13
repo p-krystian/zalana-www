@@ -1,0 +1,58 @@
+<footer>
+  <span> by Gumciaczek for Gumciaczków </span>
+  <div>
+    <span>Wszelkie materiały należą do ich właścicieli.</span>
+    <span>
+      Patterns downloaded from
+      <a class="href" target="_blank" href="http://subtlepatterns.com">www.subtlepatterns.com</a>.
+    </span>
+    <span>
+      Strona by
+      <a class="href" target="_blank" href="http://krystian.zalana.eu">Krystian Piątek</a>.
+    </span>
+  </div>
+</footer>
+
+<style>
+  footer {
+    background-image: linear-gradient(130deg, #b30c2e, #310f85, #b30c2e, #310f85);
+    background-size: 300% auto;
+    background-position-x: 100%;
+    font-size: min(5vw, 100px);
+    padding: min(1vw, 20px);
+    font-family: "Brandish Thin";
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    scroll-snap-align: end;
+    box-shadow: 0 0 1vw 0 #000;
+    text-shadow: 0.2vw 0.2vw 0.2vw #000;
+    user-select: none;
+    animation: gradient 5s linear infinite;
+  }
+  footer div {
+    margin-top: min(0.5vw, 10px);
+    font-family: "Source Code Pro";
+    font-size: min(1vw, 20px);
+    text-shadow: 0.1vw 0.1vw 0.1vw #000;
+    user-select: text;
+    cursor: default;
+  }
+  footer a {
+    color: #fff;
+    text-decoration: none;
+  }
+  footer a:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 500px) {
+    footer div {
+      display: flex;
+      flex-direction: column;
+      font-size: 2.4vw;
+      text-align: center;
+    }
+  }
+</style>

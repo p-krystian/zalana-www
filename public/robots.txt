@@ -1,0 +1,8 @@
+# Robots, pls do not read my site.
+
+User-agent: *
+Disallow: /files/
+Disallow: /imgs/
+Disallow: /errors/
+Disallow: /radio/
+Disallow: /_astro/

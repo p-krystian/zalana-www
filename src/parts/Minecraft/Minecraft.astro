@@ -1,0 +1,520 @@
+---
+import backgroundWEBM from "./files/minecraft-bg.webm";
+import headerDeskopPNG from "./files/zServMC.png";
+import headerMobilePNG from "./files/zServMCCol.png";
+
+interface Props {
+  id?: string;
+}
+
+const { id } = Astro.props;
+---
+
+<section id={id} class="minecraft">
+  <video id="mc-bg" loop muted autoplay>
+    <source src={backgroundWEBM} type="video/webm" />
+  </video>
+  <div class="name">
+    <img src={headerDeskopPNG.src} alt="" />
+    <img src={headerMobilePNG.src} alt="" />
+  </div>
+  <div class="content">
+    <div id="mc-server" class="window">
+      <div class="subname">
+        <div></div>
+        <span>OPIS</span>
+        <div></div>
+      </div>
+      <div class="subcontent">
+        <span class="desc">
+          Jedną z ulubionych gier Gumciaczków jest Minecraft. Stąd pomysł na uruchomienie własnego
+          servera Java Edition. Łącznie odbyły się cztery edycje, w których trakcie przez wiele
+          godzin wspólnymi siłami zbudowaliśmy wiele wspaniałych budowli, jednocześnie świetnie się
+          bawiąc.
+          <!--
+          Pierwsza edycja wystartowała na początku wakacji 2021 i udostępniała świat
+          w wersji 1.17. Następna już z większym rozmachem wystartowała 20 grudnia 2021
+          hostując wersję 1.18.1.
+          -->
+        </span>
+        <div id="mc-ip">offline</div>
+        <div class="buttons">
+          <a href="#mc-info" class="button">Informacje</a>
+          <a href="#mc-pobierz" class="button">Pobieranie</a>
+        </div>
+      </div>
+    </div>
+    <div id="mc-info" class="window" tabindex="0">
+      <div class="subname">
+        <div></div>
+        <span>INFO</span>
+        <a class="back" href="#mc-server">&lt;&lt;</a>
+      </div>
+      <div class="subcontent">
+        <table>
+          <tbody>
+            <tr> <td>Wersja Minecraft:</td> <td>1.21.3</td> </tr>
+            <tr> <td>Wersja Servera:</td> <td>Paper 1.21.3</td> </tr>
+            <tr>
+              <td>Wykonywanie kopii:</td>
+              <td>Codziennie o 2:00</td>
+            </tr>
+            <tr> <td>Historia kopii:</td> <td>Dwa dni wstecz</td> </tr>
+            <tr><td>Admini:</td> <td>Kryspel</td></tr>
+            <tr>
+              <td>Dostępne pluginy:</td>
+              <td>
+                <a href="#mc-pluginy">PLUGINY</a>
+              </td>
+            </tr>
+            <tr>
+              <td>Regulamin:</td>
+              <td>
+                <a href="#mc-zasady">ZASADY</a>
+              </td>
+            </tr>
+            <tr> <td>Limit HOMEów:</td> <td>9 + 1</td> </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div id="mc-pluginy" class="window" tabindex="0">
+      <div class="subname">
+        <div></div>
+        <span>PLUGINY</span>
+        <a class="back" href="#mc-info">&lt;&lt;</a>
+      </div>
+      <div class="subcontent">
+        <ul>
+          <li>GadgetsMenu</li>
+          <li>HoloMobHealth</li>
+          <li>LockettePro</li>
+          <li>LoginSecurity</li>
+          <li>NewGods</li>
+          <li>UltimateHomes</li>
+          <li>SkinsRestorer</li>
+          <li>Vehicles</li>
+        </ul>
+      </div>
+    </div>
+    <div id="mc-zasady" class="window" tabindex="0">
+      <div class="subname">
+        <div></div>
+        <span>ZASADY</span>
+        <a class="back" href="#mc-info">&lt;&lt;</a>
+      </div>
+      <div class="subcontent">
+        <ol>
+          <li>Nie rób drugiemu tego,<br />co Tobie niemiłe.</li>
+          <li>Nie nisz efektów cudzej pracy.</li>
+          <li>Nie utrudniaj życia innym.</li>
+          <li>Smoka bijemy razem.</li>
+          <li>Baw się dobrze.</li>
+        </ol>
+      </div>
+    </div>
+    <div id="mc-pobierz" class="window" tabindex="0">
+      <div class="subname">
+        <div></div>
+        <span>ZAPISY</span>
+        <a class="back" href="#mc-server">&lt;&lt;</a>
+      </div>
+      <div class="subcontent">
+        <div class="choice">
+          <span>Edycje:</span>
+          <div>
+            <button class="button">1</button>
+            <button class="button">2</button>
+            <button class="button">3</button>
+            <button class="button">4</button>
+            <button class="button">5</button>
+          </div>
+        </div>
+        <div class="edition show">
+          <div class="data">
+            <span>Edycja 1</span>
+            <span>05.09.2021</span>
+            <span>1.17</span>
+          </div>
+          <a href="./files/zalanyServE1.tar.xz" class="button href">Pobierz</a>
+        </div>
+        <div class="edition">
+          <div class="data">
+            <span>Edycja 2</span>
+            <span>26.02.2022</span>
+            <span>1.18.1</span>
+          </div>
+          <a href="./files/zalanyServE2.tar.xz" class="button href">Pobierz</a>
+        </div>
+        <div class="edition">
+          <div class="data">
+            <span>Edycja 3</span>
+            <span>09.08.2022</span>
+            <span>1.19</span>
+          </div>
+          <a href="./files/zalanyServE3.tar.xz" class="button href">Pobierz</a>
+        </div>
+        <div class="edition">
+          <div class="data">
+            <span>Edycja 4</span>
+            <span>14.02.2023</span>
+            <span>1.18.2</span>
+          </div>
+          <a href="./files/zalanyServE4.tar.xz" class="button href">Pobierz</a>
+        </div>
+        <div class="edition">
+          <div class="data">
+            <span>Edycja 5</span>
+            <span>19.01.2025</span>
+            <span>1.21.3</span>
+          </div>
+          <a href="./files/zalanyServE5.tar.xz" class="button href">Pobierz</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  @font-face {
+    src: url("./files/minecraft.woff2");
+    font-family: "Minecraft";
+    font-display: fallback;
+  }
+  .minecraft {
+    position: relative;
+    padding: min(3vw, 60px);
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    max-height: 1200px;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    scroll-snap-align: center;
+    box-shadow: 0 0 1vw 0 #000;
+    isolation: isolate;
+    background-image: url("./files/minecraft-bg-alt.webp");
+    background-position: center;
+  }
+  .minecraft video {
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    object-fit: cover;
+    background-color: transparent;
+  }
+  .name {
+    margin-top: 50px;
+  }
+  .name img {
+    width: 950px;
+  }
+  .name img:last-child {
+    display: none;
+  }
+  .content {
+    width: 80%;
+    /* aspect-ratio: 108/48; */
+    overflow: hidden;
+    white-space: nowrap;
+    background: #0006;
+    scroll-behavior: smooth;
+  }
+  .window {
+    width: 100%;
+    height: 100%;
+    display: inline-grid;
+    grid-template-columns: 1fr 10fr;
+    scroll-snap-align: start;
+    justify-content: center;
+    align-items: center;
+  }
+  .subname {
+    writing-mode: vertical-lr;
+    text-orientation: upright;
+    font-family: "Minecraft";
+    font-size: min(3.4vw, 68px);
+    display: flex;
+    height: 100%;
+    justify-content: space-between;
+    align-items: center;
+    background: #45331e url("./files/Stripped-Dark-Oak.jpg");
+    background-size: 100%;
+    padding-top: min(1vw, 20px);
+    padding-bottom: min(1vw, 20px);
+  }
+  .subcontent {
+    width: 100%;
+    height: 100%;
+    background: url("./files/glass-black.svg");
+    background-size: 6vw;
+    border: min(0.4vw, 8px) solid #0006;
+    font-family: "Source Code Pro";
+    font-size: min(2.6vw, 52px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    white-space: normal;
+    flex-direction: column;
+    gap: min(1vw, 20px);
+  }
+  .minecraft table {
+    text-shadow: 0.1vw 0.1vw 0.1vw #000c;
+  }
+  .minecraft td:nth-child(2n) {
+    padding-left: min(2vw, 40px);
+  }
+  .minecraft td {
+    border-top: min(0.2vw, 4px) solid #0006;
+  }
+  .minecraft tr:nth-child(1) td {
+    border-top: none;
+  }
+  .minecraft td a {
+    text-decoration: none;
+    color: #fff;
+    font-family: "Minecraft";
+  }
+  .minecraft td a::after {
+    content: " >>>";
+    transition: padding-left 0.15s ease-in-out;
+  }
+  .minecraft td a:hover::after {
+    content: " >>>";
+    padding-left: min(2vw, 40px);
+  }
+  .minecraft li {
+    font-size: min(3vw, 60px);
+    text-shadow: 0.1vw 0.1vw 0.1vw #000c;
+    margin-left: min(6vw, 120px);
+  }
+  .minecraft .back {
+    margin-top: min(2vw, 40px);
+    writing-mode: lr;
+    text-decoration: none;
+    color: #fff;
+    font-family: "Minecraft";
+    user-select: none;
+    transition: transform 0.15s ease-in-out;
+  }
+  .back:hover {
+    transform: translateX(max(-0.6vw, -12px));
+  }
+  .desc {
+    width: 100%;
+    font-size: min(2vw, 40px);
+    padding: min(2vw, 40px);
+    text-shadow: 0.1vw 0.1vw 0.1vw #000;
+  }
+  .buttons {
+    display: flex;
+    gap: min(1vw, 20px);
+  }
+  .button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    background: #6d6d6d;
+    color: #ddd;
+    border: min(0.34vw, 6px) solid #000;
+    text-shadow: min(0.15vw, 3px) min(0.15vw, 3px) #000a;
+    font-size: min(2.4vw, 48px);
+    padding: min(0.4vw, 8px) min(1vw, 20px);
+    font-family: "Minecraft";
+    cursor: pointer;
+    user-select: none;
+    box-shadow:
+      inset max(-0.3vw, -6px) max(-0.3vw, -6px) #0006,
+      inset min(0.2vw, 4px) min(0.2vw, 4px) #fff7;
+  }
+  .button:hover {
+    background-color: #6a6ab0;
+    color: #ffffa0;
+  }
+  #mc-pluginy .subcontent {
+    align-items: flex-start;
+  }
+  #mc-pobierz .subcontent {
+    justify-content: space-evenly;
+  }
+  #mc-pobierz .edition,
+  #mc-pobierz .choice {
+    min-width: 80%;
+    border: min(0.4vw, 8px) solid #0006;
+    padding: min(1vw, 20px) 0;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: min(1vw, 20px);
+  }
+  #mc-pobierz .edition.show {
+    display: flex;
+  }
+  #mc-pobierz .choice {
+    display: flex;
+    min-width: 60%;
+    flex-direction: row;
+  }
+  #mc-pobierz .choice div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: min(1vw, 20px);
+  }
+  #mc-pobierz .data {
+    min-width: 90%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+  #mc-pobierz .data span {
+    display: block;
+    min-width: 30%;
+    text-align: center;
+    border-left: min(0.4vw, 8px) solid #0006;
+    border-right: min(0.4vw, 8px) solid #0006;
+    font-size: min(2.4vw, 48px);
+  }
+  #mc-pobierz .data span:nth-child(2) {
+    border: none;
+  }
+  #mc-ip {
+    background-color: #000;
+    cursor: pointer;
+    padding: min(0.6vw, 12px);
+    width: 80%;
+    font-family: "Minecraft";
+    border: min(0.24vw, 5px) solid #ddd;
+    white-space: normal;
+    text-align: center;
+    color: #f55;
+    text-shadow: 0.15vw 0.15vw #fff3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    user-select: none;
+  }
+  #mc-ip.online {
+    color: #5f5;
+  }
+  #mc-ip::after {
+    content: "";
+    background-image: url("../assets/odswiez.svg");
+    width: min(2.6vw, 52px);
+    height: min(2.6vw, 52px);
+    position: absolute;
+    right: min(1vw, 20px);
+    opacity: 0;
+    display: inline-block;
+    background-size: 100%;
+    transition: opacity 0.15s ease-in-out;
+  }
+  #mc-ip.online::after {
+    background-image: url("../assets/kopiuj.svg");
+  }
+  #mc-ip:hover::after {
+    opacity: 100%;
+  }
+
+  @media (min-width: 1200px) {
+    .minecraft {
+      min-height: min(45vw, 1200px);
+    }
+    .content {
+      min-height: min(33vw, 660px);
+    }
+  }
+  @media (max-width: 1200px) {
+    .name img {
+      width: 90vw;
+    }
+  }
+  @media (max-width: 500px) {
+    .minecraft {
+      width: 100%;
+      height: calc(100vh - 75px);
+      height: calc(100dvh - 75px);
+      min-height: 115vw;
+      max-height: unset;
+      scroll-snap-align: end;
+      justify-content: space-evenly;
+    }
+    .name {
+      margin-top: unset;
+    }
+    .name img:first-child {
+      display: none;
+    }
+    .name img:last-child {
+      display: unset;
+    }
+    .content {
+      width: 95%;
+      aspect-ratio: auto;
+    }
+    .window {
+      display: inline-flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .subname {
+      writing-mode: horizontal-tb;
+      font-size: 5vw;
+      height: unset;
+      width: 100%;
+      flex-direction: row-reverse;
+      justify-content: space-between;
+      background: #45331e url("./files/Stripped-Dark-Oak-Left.jpg");
+      background-size: auto 100%;
+    }
+    .desc {
+      font-size: 3.4vw;
+    }
+    .back {
+      margin-top: auto;
+      margin-left: 3vw;
+    }
+    .subcontent {
+      background-size: 10vw;
+      border: 0.6vw solid #0006;
+      font-size: 4vw;
+    }
+    #mc-ip::after {
+      width: 3.6vw;
+      height: 3.6vw;
+      right: 1vw;
+      opacity: 1;
+    }
+    .button {
+      border: 0.5vw solid #000;
+      text-shadow: 0.25vw 0.25vw #000a;
+      font-size: 4vw;
+      padding: 0.66vw 1.66vw;
+      box-shadow:
+        inset -0.5vw -0.5vw #0006,
+        inset 0.33vw 0.33vw #fff7;
+      color: #fff;
+      background-clip: #595959;
+    }
+    .minecraft li {
+      font-size: 4vw;
+      text-shadow: 0.1vw 0.1vw 0.1vw #000c;
+      margin-left: 6.2vw;
+    }
+    #mc-pobierz .data span {
+      font-size: 3.4vw;
+    }
+  }
+</style>

@@ -1,0 +1,203 @@
+---
+import zalanaSVG from "../assets/zalana.svg";
+
+interface Props {
+  toTop: string;
+  toCommunity: string;
+  toRadio: string;
+  toMinecraft: string;
+}
+
+const { toTop, toCommunity, toRadio, toMinecraft } = Astro.props;
+---
+
+<nav>
+  <a href={toTop}>
+    <img src={zalanaSVG.src} alt="" />
+    <span>Zalana&nbsp;</span>Witryna
+  </a>
+  <div class="links">
+    <a href={toCommunity}>Gumciaczki</a>
+    <a href={toRadio}>Radio</a>
+    <a href={toMinecraft}>Minecraft</a>
+  </div>
+  <button class="menu-switch" title="Menu">
+    <div class="line"></div>
+    <div class="line"></div>
+    <div class="line"></div>
+  </button>
+  <div class="scroll-progress">
+    <div class="scroll-bar"></div>
+  </div>
+  <div class="menu" aria-expanded="false">
+    <a href={toCommunity}>Gumciaczki</a>
+    <a href={toRadio}>Radio</a>
+    <a href={toMinecraft}>Minecraft</a>
+  </div>
+</nav>
+
+<style>
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 3;
+    background-color: #101010;
+    height: 75px;
+    display: grid;
+    justify-content: space-between;
+    align-items: end;
+    font-family: "Brandish Thin";
+    font-size: 44px;
+    user-select: none;
+    grid-template-areas:
+      "top links"
+      /* 'scrollbar scrollbar' */
+      "menu menu";
+  }
+  a {
+    color: #fff;
+    text-decoration: none;
+    display: inline-block;
+    transition: transform 0.15s ease-in-out;
+  }
+  a:hover {
+    transform: translateY(-10%);
+  }
+  nav > a {
+    font-size: 48px;
+    display: inline-flex;
+    justify-content: space-around;
+    align-items: center;
+    padding-left: 15px;
+    grid-area: top;
+  }
+  nav > a img {
+    height: 45px;
+    width: 45px;
+    margin-right: 15px;
+  }
+  .links {
+    grid-area: links;
+    padding-right: 15px;
+  }
+  .menu-switch {
+    appearance: none;
+    background: transparent;
+    border: none;
+    grid-area: links;
+    margin-right: 15px;
+    width: 60px;
+    height: 60px;
+    /* display: flex; */
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    cursor: pointer;
+    overflow: hidden;
+    display: none;
+  }
+  .menu-switch .line {
+    width: 50px;
+    height: 8px;
+    background: #fff;
+    border-radius: 4px;
+    position: relative;
+    transition: transform 0.4s ease;
+  }
+  .menu-switch.active .line:nth-child(1) {
+    transform: rotate(45deg) translate(12px, 12px);
+  }
+  .menu-switch.active .line:nth-child(2) {
+    transform: translateX(60px);
+  }
+  .menu-switch.active .line:nth-child(3) {
+    transform: rotate(-45deg) translate(12px, -12px);
+  }
+  .menu {
+    grid-area: menu;
+    min-width: 50vw;
+    height: calc(100vh - 70px);
+     height: calc(100dvh - 70px);
+    padding: 20px;
+    padding-left: 30px;
+    /* display: flex; */
+    flex-direction: column;
+    gap: 50px;
+    justify-content: center;
+    align-items: flex-end;
+    background: #101010;
+    position: absolute;
+    right: 0;
+    top: 5px;
+    overflow-y: auto;
+    border-left: 2px solid #000;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+  .menu[aria-expanded="true"] {
+    opacity: 1;
+    display: flex;
+  }
+  .menu a:hover {
+    transform: translateX(-5%);
+  }
+  .scroll-progress {
+    height: 2px;
+    background: #000;
+    /* grid-area: scrollbar; */
+    align-self: end;
+    position: absolute;
+    inset: auto 0 0;
+  }
+  .scroll-bar {
+    position: relative;
+    width: 0;
+    height: 100%;
+    background-size: 300%;
+    background-attachment: fixed;
+    background-image: linear-gradient(90deg, #b30c2e, #310f85, #b30c2e, #310f85);
+    animation: gradient 3s linear infinite;
+    transition: width 0.2s ease-out;
+  }
+  .scroll-bar::before,
+  .scroll-bar::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    background-size: 300%;
+    background-attachment: fixed;
+    background-image: linear-gradient(90deg, #b30c2e, #310f85, #b30c2e, #310f85);
+    animation: gradient 3s linear infinite;
+  }
+  .scroll-bar::before {
+    top: 2px;
+    bottom: -1px;
+    filter: blur(2px);
+  }
+  .scroll-bar::after {
+    top: 3px;
+    bottom: -3px;
+    filter: blur(4px);
+  }
+
+  @media (min-width: 1200px) {
+    .menu {
+      display: none !important;
+    }
+  }
+  @media (max-width: 1200px) {
+    .links {
+      display: none;
+    }
+    .menu-switch {
+      display: flex;
+    }
+  }
+  @media (max-width: 700px) {
+    nav a span {
+      display: none;
+    }
+  }
+</style>

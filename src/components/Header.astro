@@ -1,0 +1,113 @@
+---
+interface Props {
+  id?: string;
+}
+
+const { id } = Astro.props;
+---
+
+<header id={id}>
+  <div class="logo">
+    <div class="shadow"></div>
+    <div class="image"></div>
+  </div>
+
+  <h1>Zalana<br />Piwnica</h1>
+
+  <span>Dla każdego coś miłego</span>
+</header>
+
+<style>
+  header {
+    position: relative;
+    display: grid;
+    grid-template-areas:
+      "icon title"
+      "entry entry";
+    justify-content: center;
+    align-items: center;
+    background: #b1044f;
+    scroll-snap-align: start;
+    background-image: linear-gradient(140deg, #1a0f86, #b40c2e);
+    padding: 15px;
+    user-select: none;
+    overflow: hidden;
+  }
+  header > * {
+    transition: transform 0.15s ease-out;
+  }
+  .logo {
+    grid-area: icon;
+    width: 255px;
+    height: 230px;
+    position: relative;
+  }
+  .logo .image,
+  .logo .shadow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("../assets/zalana.svg");
+    background-size: 90% auto;
+    background-repeat: no-repeat;
+    background-position: center left;
+  }
+  .logo .shadow {
+    transform: translate(8px, 8px);
+    filter: invert(1);
+    opacity: 30%;
+  }
+  header h1 {
+    grid-area: title;
+    font-family: "Brandish Thin";
+    font-size: 100px;
+    text-shadow: 8px 8px 0 #0005;
+    font-weight: 400;
+  }
+  header span {
+    grid-area: entry;
+    font-size: 30px;
+    font-family: "Source Code Pro";
+    text-align: center;
+    text-shadow: 3px 3px 0 #0005;
+  }
+  @media (max-width: 700px) {
+    header {
+      padding: 10px;
+    }
+    .logo {
+      width: 179px;
+      height: 161px;
+    }
+    .logo .shadow {
+      transform: translate(6px, 6px);
+    }
+    header h1 {
+      font-size: 70px;
+      text-shadow: 6px 6px 0 #0005;
+    }
+    header span {
+      font-size: 21px;
+      text-shadow: 2px 2px 0 #0005;
+    }
+  }
+  @media (max-width: 500px) {
+    .logo {
+      width: 128px;
+      height: 115px;
+    }
+    .logo .shadow {
+      transform: translate(4px, 4px);
+    }
+    header h1 {
+      font-size: 50px;
+      text-shadow: 4px 4px 0 #0005;
+    }
+    header span {
+      font-size: 15px;
+      text-shadow: 2px 2px 0 #0005;
+    }
+  }
+</style>

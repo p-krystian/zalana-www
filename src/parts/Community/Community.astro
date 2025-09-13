@@ -1,0 +1,265 @@
+---
+interface Props {
+  id?: string;
+}
+
+const { id } = Astro.props;
+---
+
+<section id={id} class="community">
+  <div class="out-images">
+    <div class="images">
+      <div>
+        <img class="template" data-src="/community-slides/among.webp" alt="" />
+      </div>
+      <div>
+        <img class="template" data-src="/community-slides/brawl.webp" alt="" />
+      </div>
+      <div>
+        <img class="template" data-src="/community-slides/mine.webp" alt="" />
+      </div>
+      <div>
+        <img class="template" data-src="/community-slides/sot.webp" alt="" />
+      </div>
+      <div class="template" id="community-slides">
+        <img class="slide" id="community-slide-down" src="/community-slides/show/1.webp" alt="" />
+        <img class="slide" id="community-slide-up" src="/community-slides/show/0.webp" alt="" />
+      </div>
+      <div>
+        <img class="template" data-src="/community-slides/csgo.webp" alt="" />
+      </div>
+      <div>
+        <img class="template" data-src="/community-slides/codwz.webp" alt="" />
+      </div>
+      <div>
+        <img class="template" data-src="/community-slides/gta5.webp" alt="" />
+      </div>
+      <div>
+        <img class="template" data-src="/community-slides/has.webp" alt="" />
+      </div>
+    </div>
+  </div>
+  <div class="content">
+    <div class="sect-name">
+      <span class="sect-name-text"> Społeczność </span>
+    </div>
+    <div class="desc">
+      <span>
+        Gumciaczki to movement, najaktywniejsi członkowie Zalanej Piwnicy. Głównie przesiadujemy
+        nocami, by za dnia móc sprawiać pozory, choć nie ograniczamy się do spędzania czasu
+        wyłącznie zdalnie. Mimo różnic zawsze odnajdujemy wspólny język. Wspólnie tworzymy różne
+        projekty i pomagamy sobie nawzajem. Co jakiś czas organizujemy wydarzenia w kooperacji z
+        innymi serwerami, by móc razem się integrować.<br />
+        Oprócz tego bardzo dobrze potrafimy jednoczyć się w grach. Wspólnie kłamiemy w AmongUs, zabijamy
+        w Counter Strike 2, budujemy w Minecraft czy walczymy w Brawlhalla. Dołączenie do nas nie jest
+        trudne, jeśli to czytasz, to prawdopodobnie już wiesz, którędy droga.
+      </span>
+    </div>
+  </div>
+</section>
+
+<style>
+  .community {
+    position: relative;
+    height: min(80vh, 800px);
+    min-height: 600px;
+    background: #191919;
+    overflow: hidden;
+    scroll-snap-align: end;
+    box-shadow: 0 0 1vw 0 #000;
+    max-height: 50vw;
+  }
+  .community::before {
+    background: url("./woven.jpg");
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    content: "";
+    transition: filter 0.3s ease-in-out;
+  }
+  .out-images {
+    max-width: 100vw;
+    max-height: 100%;
+    height: 100%;
+    position: relative;
+  }
+  .images {
+    width: 1920px;
+    height: 900px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    filter: blur(0);
+    transform: translateX(calc(min(65vw, 1300px) - 960px))
+      translateY(calc(min(15vh, 150px) - 360px)) rotate(-8deg);
+    transition: filter 0.3s ease-in-out;
+  }
+
+  .community:focus-visible .images,
+  .community:focus-visible::before,
+  .community:hover .images,
+  .community:hover::before {
+    filter: blur(5px);
+  }
+  .template {
+    width: 500px;
+    aspect-ratio: 16/9;
+    border-radius: 50px;
+    box-shadow: -6px 6px 15px 0 #000;
+  }
+  #community-slides {
+    width: 700px;
+    position: relative;
+  }
+  #community-slide-up {
+    box-shadow: none;
+    animation-duration: 0.5s;
+    animation-direction: reverse;
+    animation-fill-mode: both;
+  }
+  .slide {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: absolute;
+    border-radius: 50px;
+    box-shadow: -1px 1px 30px 0 #000;
+  }
+  .sect-name {
+    background-color: #0005;
+    backdrop-filter: blur(5px);
+    transition:
+      background-color 0.3s ease-in-out,
+      backdrop-filter 0.3s ease-in-out;
+  }
+  .community:focus-visible .sect-name,
+  .community:hover .sect-name {
+    background-color: transparent;
+    backdrop-filter: blur(0);
+  }
+  .content {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    display: flex;
+    transition: background-color 0.3s ease-in-out;
+  }
+  .community:focus-visible .content,
+  .content:hover {
+    background-color: #0005;
+  }
+  .desc {
+    width: 100%;
+    height: 100%;
+    cursor: default;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+  .community:focus-visible .content .desc,
+  .community .content:hover .desc {
+    opacity: 1;
+  }
+  .desc span {
+    width: 100%;
+    height: 100%;
+    font-family: Ubuntu;
+    font-size: min(2.2vw, 44px);
+    padding: min(4vw, 8px);
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    text-shadow: 0.1vw 0.1vw 0.1vw #000;
+  }
+
+  @media (max-width: 500px) {
+    .community {
+      max-height: unset;
+      height: 75vh;
+    }
+    .out-images {
+      height: inherit;
+      top: 18vw;
+      height: 82%;
+    }
+    .images {
+      width: 100%;
+      height: calc(100% - 45vw);
+      gap: unset;
+      filter: blur(0);
+      transform: none;
+      transition: none;
+      align-items: center;
+    }
+    .images div {
+      display: none;
+    }
+    #community-slides {
+      display: block;
+      width: 90vw;
+    }
+    .template {
+      width: auto;
+      box-shadow: -3px 3px 8px 0 #000;
+    }
+    .slide {
+      border-radius: 20px;
+    }
+    .community:hover .images,
+    .community:hover::before {
+      filter: blur(0);
+    }
+    .content {
+      flex-direction: column;
+    }
+    .sect-name {
+      width: 100%;
+      height: auto;
+      padding: 2%;
+      transition: none;
+    }
+    .community:hover .sect-name {
+      background-color: #0005;
+      backdrop-filter: blur(5px);
+    }
+    .sect-name-text::before {
+      width: 10vw;
+      height: 10vw;
+      margin: unset;
+      margin-right: 3vw;
+    }
+    .sect-name-text {
+      display: flex;
+      font-family: "Source Code Pro";
+      font-size: 10vw;
+      justify-content: center;
+      align-items: center;
+    }
+    .content {
+      transition: none;
+    }
+    .content:hover {
+      background-color: unset;
+    }
+    .desc {
+      opacity: 1;
+      transition: none;
+    }
+    .desc span {
+      font-size: 3.2vw;
+      padding: 8vw 3vw;
+      align-items: flex-end;
+    }
+  }
+</style>

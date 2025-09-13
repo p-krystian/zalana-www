@@ -1,0 +1,62 @@
+<div id="notify-area"></div>
+
+<style>
+  #notify-area {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    width: 100%;
+    min-height: 50px;
+    padding: 1vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    transform: translateY(-100%);
+    animation-duration: 4s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: both;
+  }
+  #notify-area .notify {
+    min-width: 100px;
+    min-height: 50px;
+    border-radius: 1vw;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    background-color: #000;
+    animation-duration: 2s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-fill-mode: both;
+  }
+  #notify-area .content {
+    display: flex;
+    background: #101010;
+    width: 100%;
+    margin: 0.4vw;
+    border-radius: 0.6vw;
+    padding: 0.8vw;
+    justify-content: center;
+    align-items: center;
+    font-size: 3vw;
+    text-align: center;
+    font-family: "Source Code Pro";
+  }
+
+  @media (max-width: 500px) {
+    #notify-area {
+      padding: 3vw;
+    }
+    #notify-area .notify {
+      border-radius: 2vw;
+    }
+    #notify-area .content {
+      margin: 1vw;
+      border-radius: 1.4vw;
+      padding: 2.1vw;
+      font-size: 8vw;
+    }
+  }
+</style>

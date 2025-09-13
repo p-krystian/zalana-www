@@ -1,0 +1,167 @@
+---
+import NotifyArea from "../components/NotifyArea.astro";
+import Header from "../components/Header.astro";
+import Navigation from "../components/Navigation.astro";
+import Footer from "../components/Footer.astro";
+
+import Community from "../parts/Community/Community.astro";
+import Radio from "../parts/Radio/Radio.astro";
+import Minecraft from "../parts/Minecraft/Minecraft.astro";
+---
+
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Zalana Witryna</title>
+    <link rel="icon" href="./favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <meta name="description" content="Oficjalna strona społeczności Gumciaczków." />
+    <meta name="keywords" content="zalana, zalanawirtyna, zalana witryna, zalana piwnica" />
+    <meta name="author" content="Krystian Piątek" />
+    <meta property="og:locale" content="pl_PL" />
+    <meta property="og:image" content="https://www.zalana.eu/imgs/zalana.png" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#b40c2e" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <body>
+    <NotifyArea />
+    <main>
+      <Header id="top" />
+      <Navigation toTop="#top" toCommunity="#spolecznosc" toRadio="#radio" toMinecraft="#minecraft" />
+
+      <Community id="spolecznosc" />
+      <Radio id="radio" />
+      <Minecraft id="minecraft" />
+
+      <Footer />
+    </main>
+    <div id="backload"></div>
+  </body>
+</html>
+
+<style is:global>
+  @import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@500&family=Ubuntu:wght@300&display=swap");
+  @font-face {
+    src: url("../assets/brandish.woff2");
+    font-family: "Brandish Thin";
+    font-display: fallback;
+  }
+  @keyframes appear {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  @keyframes gradient {
+    from {
+      background-position-x: 100%;
+    }
+    to {
+      background-position-x: 0%;
+    }
+  }
+  @keyframes rotate-color {
+    from {
+      filter: hue-rotate(0deg);
+    }
+    to {
+      filter: hue-rotate(360deg);
+    }
+  }
+  @keyframes fade {
+    0% {
+      background-color: #1a0f86;
+    }
+    49% {
+      background-color: #b40c2e;
+    }
+    51% {
+      background-color: #b40c2e;
+    }
+    100% {
+      background-color: #1a0f86;
+    }
+  }
+  @keyframes show-notify {
+    0% {
+      transform: translateY(-100%);
+    }
+    15% {
+      transform: translateY(0);
+    }
+    85% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(-100%);
+    }
+  }
+  *,
+  *::after,
+  *::before {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    background: #1f2126 url("../assets/zwartevilt.webp");
+    color: #fff;
+    min-height: 100vh;
+    min-height: 100dvh;
+    min-width: 350px;
+  }
+  main {
+    scroll-snap-type: y proximity;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    min-width: 350px;
+    max-width: 2000px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 0 2vw 0 black;
+  }
+  img[data-src] {
+    transition: opacity 0.3s ease 0.2s;
+  }
+  img:not([src]) {
+    opacity: 0;
+  }
+  section,
+  footer {
+    margin-top: 40px;
+  }
+  .sect-name {
+    display: flex;
+    width: 35%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+  .sect-name-text::before {
+    content: "";
+    display: block;
+    background-image: url("../assets/przejscie.svg");
+    background-size: 100%;
+    width: 80%;
+    margin: 10%;
+    aspect-ratio: 1/1;
+  }
+  .sect-name-text {
+    font-family: "Source Code Pro";
+    font-size: min(4vw, 100px);
+    margin-left: min(1vw, 20px);
+    margin-right: min(1vw, 20px);
+  }
+  #backload {
+    opacity: 0;
+    position: fixed;
+    z-index: -5;
+  }
+</style>
