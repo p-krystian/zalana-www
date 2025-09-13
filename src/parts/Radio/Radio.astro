@@ -20,18 +20,47 @@ const PLAYER_URL = import.meta.env.RADIO_PLAYER_URL;
         </span>
       </div>
       <div id="radio-audycje" class="subelement" style="display: none">
-        <iframe></iframe>
+        <iframe data-src={PLAYER_URL}></iframe>
       </div>
     </div>
     <div class="scroll">
-      <button class="active">Opis</button>
-      <button>Odtwarzacz</button>
+      <button value="radio-opis" aria-checked="true">Opis</button>
+      <button value="radio-audycje">Odtwarzacz</button>
     </div>
   </div>
   <div class="sect-name">
-    <span class="sect-name-text"> Radio </span>
+    <span class="sect-name-text">Radio</span>
   </div>
 </section>
+
+<script>
+  const buttons = document.querySelectorAll(".scroll button") as NodeListOf<HTMLButtonElement>;
+  const elements = document.querySelectorAll(".subelement") as NodeListOf<HTMLElement>;
+
+  buttons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      buttons.forEach((btn) => { btn.setAttribute("aria-checked", "false"); });
+      elements.forEach((el) => { el.style.display = "none"; });
+
+      const contentID = btn.getAttribute('value');
+      const element = document.getElementById(contentID || '');
+      if (!contentID || !element){
+        return;
+      }
+      element.style.display = "";
+      btn.setAttribute("aria-checked", "true");
+    });
+  });
+  window.addEventListener("load", () => {
+    const iframe = document.querySelector(".radio iframe") as HTMLIFrameElement | null;
+    const src = iframe?.getAttribute("data-src");
+    if (iframe && src) {
+      setTimeout(() => {
+        iframe.src = src;
+      }, 200);
+    }
+  });
+</script>
 
 <style>
   @keyframes to-right-bottom {
@@ -100,6 +129,7 @@ const PLAYER_URL = import.meta.env.RADIO_PLAYER_URL;
     font-size: min(2vw, 40px);
     background-color: #0d0e13;
     border-top: min(0.4vw, 8px) solid transparent;
+    font-family: "Source Code Pro";
     transition:
       background-color 0.1s ease-in-out,
       border-color 0.1s ease-in-out;
@@ -107,12 +137,9 @@ const PLAYER_URL = import.meta.env.RADIO_PLAYER_URL;
   .scroll button:hover {
     background-color: #111419;
   }
-  .scroll button.active {
+  .scroll button[aria-checked="true"] {
     border-color: #fff;
-    cursor: default;
-  }
-  .scroll button.active:hover {
-    background-color: #0d0e13;
+    pointer-events: none;
   }
   .subelement {
     width: 100%;
@@ -130,10 +157,7 @@ const PLAYER_URL = import.meta.env.RADIO_PLAYER_URL;
     width: 100%;
     height: 100%;
     border: none;
-  }
-  .radio iframe:empty {
-    background: transparent url("../assets/odswiez.svg") no-repeat center;
-    background-size: 150px;
+    background: transparent;
   }
 
   @media (max-width: 500px) {
