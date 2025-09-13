@@ -69,9 +69,14 @@ import Minecraft from "../parts/Minecraft/Minecraft.astro";
 
   window.addEventListener("load", () => {
     updateScrollPercent();
+
     document.querySelectorAll('a[href^="#"]').forEach((a) => {
       a.addEventListener("click", (event) => scrollTo(a, event));
     });
+
+    document.querySelectorAll('img[data-src]').forEach(img =>
+      img.setAttribute('src', img.getAttribute('data-src')!)
+    );
   });
 </script>
 

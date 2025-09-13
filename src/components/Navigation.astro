@@ -21,20 +21,31 @@ const { toTop, toCommunity, toRadio, toMinecraft } = Astro.props;
     <a href={toRadio}>Radio</a>
     <a href={toMinecraft}>Minecraft</a>
   </div>
-  <button class="menu-switch" title="Menu">
-    <div class="line"></div>
-    <div class="line"></div>
-    <div class="line"></div>
+  <button id="menu-switch" title="Menu" aria-checked="false">
+    <div aria-hidden="true" class="line"></div>
+    <div aria-hidden="true" class="line"></div>
+    <div aria-hidden="true" class="line"></div>
   </button>
   <div class="scroll-progress" aria-hidden="true">
     <div class="scroll-bar"></div>
   </div>
-  <div class="menu" role="navigation" aria-expanded="false">
+  <div id="menu" role="navigation" aria-expanded="false">
     <a href={toCommunity}>Gumciaczki</a>
     <a href={toRadio}>Radio</a>
     <a href={toMinecraft}>Minecraft</a>
   </div>
 </nav>
+
+<script>
+  const menuSwitch = document.querySelector("#menu-switch")!;
+  const menu = document.querySelector("#menu")!;
+
+  menuSwitch.addEventListener("click", () => {
+    const newState = menu.getAttribute("aria-expanded") === "true" ? "false" : "true";
+    menuSwitch.setAttribute("aria-checked", newState);
+    menu.setAttribute("aria-expanded", newState);
+  });
+</script>
 
 <style>
   nav {
@@ -51,7 +62,7 @@ const { toTop, toCommunity, toRadio, toMinecraft } = Astro.props;
     user-select: none;
     grid-template-areas:
       "top links"
-      /* 'scrollbar scrollbar' */
+      /*"scrollbar scrollbar"*/
       "menu menu";
   }
   a {
@@ -80,7 +91,7 @@ const { toTop, toCommunity, toRadio, toMinecraft } = Astro.props;
     grid-area: links;
     padding-right: 15px;
   }
-  .menu-switch {
+  #menu-switch {
     appearance: none;
     background: transparent;
     border: none;
@@ -96,7 +107,7 @@ const { toTop, toCommunity, toRadio, toMinecraft } = Astro.props;
     overflow: hidden;
     display: none;
   }
-  .menu-switch .line {
+  #menu-switch .line {
     width: 50px;
     height: 8px;
     background: #fff;
@@ -104,16 +115,16 @@ const { toTop, toCommunity, toRadio, toMinecraft } = Astro.props;
     position: relative;
     transition: transform 0.4s ease;
   }
-  .menu-switch.active .line:nth-child(1) {
+  #menu-switch[aria-checked="true"] .line:nth-child(1) {
     transform: rotate(45deg) translate(12px, 12px);
   }
-  .menu-switch.active .line:nth-child(2) {
+  #menu-switch[aria-checked="true"] .line:nth-child(2) {
     transform: translateX(60px);
   }
-  .menu-switch.active .line:nth-child(3) {
+  #menu-switch[aria-checked="true"] .line:nth-child(3) {
     transform: rotate(-45deg) translate(12px, -12px);
   }
-  .menu {
+  #menu {
     grid-area: menu;
     min-width: 50vw;
     height: calc(100vh - 70px);
@@ -135,17 +146,17 @@ const { toTop, toCommunity, toRadio, toMinecraft } = Astro.props;
     opacity: 0;
     transition: opacity 0.4s ease;
   }
-  .menu[aria-expanded="true"] {
+  #menu[aria-expanded="true"] {
     opacity: 1;
     display: flex;
   }
-  .menu a:hover {
+  #menu a:hover {
     transform: translateX(-5%);
   }
   .scroll-progress {
     height: 2px;
     background: #000;
-    /* grid-area: scrollbar; */
+    /*grid-area: scrollbar;*/
     align-self: end;
     position: absolute;
     inset: auto 0 0;
@@ -191,7 +202,7 @@ const { toTop, toCommunity, toRadio, toMinecraft } = Astro.props;
     .links {
       display: none;
     }
-    .menu-switch {
+    #menu-switch {
       display: flex;
     }
   }
