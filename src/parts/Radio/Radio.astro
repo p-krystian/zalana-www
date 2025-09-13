@@ -4,6 +4,8 @@ interface Props {
 }
 
 const { id } = Astro.props;
+
+const PLAYER_URL = import.meta.env.RADIO_PLAYER_URL;
 ---
 
 <section id={id} class="radio">

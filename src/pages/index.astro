@@ -7,6 +7,8 @@ import Footer from "../components/Footer.astro";
 import Community from "../parts/Community/Community.astro";
 import Radio from "../parts/Radio/Radio.astro";
 import Minecraft from "../parts/Minecraft/Minecraft.astro";
+
+const OG_IMAGE = import.meta.env.OG_IMAGE_URL;
 ---
 
 <!doctype html>
@@ -20,7 +22,7 @@ import Minecraft from "../parts/Minecraft/Minecraft.astro";
     <meta name="keywords" content="zalana, zalanawirtyna, zalana witryna, zalana piwnica" />
     <meta name="author" content="Krystian Piątek" />
     <meta property="og:locale" content="pl_PL" />
-    <meta property="og:image" content="https://www.zalana.eu/imgs/zalana.png" />
+    <meta property="og:image" content={OG_IMAGE} />
     <meta name="color-scheme" content="dark" />
     <meta name="theme-color" content="#b40c2e" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -74,9 +76,9 @@ import Minecraft from "../parts/Minecraft/Minecraft.astro";
       a.addEventListener("click", (event) => scrollTo(a, event));
     });
 
-    document.querySelectorAll('img[data-src]').forEach(img =>
-      img.setAttribute('src', img.getAttribute('data-src')!)
-    );
+    document
+      .querySelectorAll("img[data-src]")
+      .forEach((img) => img.setAttribute("src", img.getAttribute("data-src")!));
   });
 </script>
 
