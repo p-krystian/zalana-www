@@ -21,7 +21,7 @@ const { toTop, toCommunity, toRadio, toMinecraft } = Astro.props;
     <a href={toRadio}>Radio</a>
     <a href={toMinecraft}>Minecraft</a>
   </div>
-  <button id="menu-switch" title="Menu" aria-checked="false">
+  <button id="menu-switch" title="Menu" aria-pressed="false" aria-controls="mobile-menu">
     <div aria-hidden="true" class="line"></div>
     <div aria-hidden="true" class="line"></div>
     <div aria-hidden="true" class="line"></div>
@@ -42,7 +42,7 @@ const { toTop, toCommunity, toRadio, toMinecraft } = Astro.props;
 
   menuSwitch.addEventListener("click", () => {
     const newState = menu.getAttribute("aria-expanded") === "true" ? "false" : "true";
-    menuSwitch.setAttribute("aria-checked", newState);
+    menuSwitch.setAttribute("aria-pressed", newState);
     menu.setAttribute("aria-expanded", newState);
   });
 </script>
@@ -115,13 +115,13 @@ const { toTop, toCommunity, toRadio, toMinecraft } = Astro.props;
     position: relative;
     transition: transform 0.4s ease;
   }
-  #menu-switch[aria-checked="true"] .line:nth-child(1) {
+  #menu-switch[aria-pressed="true"] .line:nth-child(1) {
     transform: rotate(45deg) translate(12px, 12px);
   }
-  #menu-switch[aria-checked="true"] .line:nth-child(2) {
+  #menu-switch[aria-pressed="true"] .line:nth-child(2) {
     transform: translateX(60px);
   }
-  #menu-switch[aria-checked="true"] .line:nth-child(3) {
+  #menu-switch[aria-pressed="true"] .line:nth-child(3) {
     transform: rotate(-45deg) translate(12px, -12px);
   }
   #menu {

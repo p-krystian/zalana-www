@@ -17,7 +17,7 @@ const { id } = Astro.props;
 ---
 
 <section id={id} class="minecraft">
-  <video id="mc-bg" loop muted autoplay tabindex="-1" aria-hidden="true">
+  <video id="mc-bg" playsinline loop muted autoplay tabindex="-1" aria-hidden="true">
     <source src={backgroundWEBM} type="video/webm" />
   </video>
 

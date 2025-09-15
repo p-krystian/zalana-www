@@ -2,7 +2,7 @@
   <img src="public/zalana.png" alt="Zalana Logo" height="120" />
 </p>
 
-# Zalana Witryna 🎮
+# Zalana Witryna
 
 **Zalana Witryna** is the official website for the **Gumciaczki** community, part of the **Zalana Piwnica** Discord server.
 
