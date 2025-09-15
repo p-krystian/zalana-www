@@ -10,13 +10,17 @@ const { id, name, backHref } = Astro.props;
 
 <div class="window" id={id}>
   <div class="subname">
-    <div aria-hidden="true"></div>
+    <div aria-hidden="true">&nbsp;</div>
     <span>{name.toUpperCase()}</span>
-    {backHref ? (
-      <a class="back" href={backHref}>&lt;&lt;</a>
-    ) : (
-      <div aria-hidden="true"></div>
-    )}
+    {
+      backHref ? (
+        <a class="back" href={backHref}>
+          &lt;&lt;
+        </a>
+      ) : (
+        <div aria-hidden="true">&nbsp;</div>
+      )
+    }
   </div>
   <div class="subcontent">
     <slot />
@@ -47,7 +51,7 @@ const { id, name, backHref } = Astro.props;
     align-items: center;
     background: #45331e url("../files/Stripped-Dark-Oak.jpg");
     background-size: 100%;
-    padding-top: min(1vw, 20px);
+    /*padding-top: min(1vw, 20px);*/
     padding-bottom: min(1vw, 20px);
   }
   .subcontent {
@@ -59,7 +63,7 @@ const { id, name, backHref } = Astro.props;
     font-family: "Source Code Pro";
     font-size: min(2.6vw, 52px);
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
     flex-wrap: wrap;
     white-space: normal;
@@ -67,7 +71,7 @@ const { id, name, backHref } = Astro.props;
     gap: min(1vw, 20px);
   }
   .back {
-    margin-top: min(2vw, 40px);
+    /*margin-top: min(2vw, 40px);*/
     writing-mode: lr;
     text-decoration: none;
     color: #fff;
@@ -77,5 +81,32 @@ const { id, name, backHref } = Astro.props;
   }
   .back:hover {
     transform: translateX(max(-0.6vw, -12px));
+  }
+  @media (max-width: 500px) {
+    .window {
+      display: inline-flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .subname {
+      writing-mode: horizontal-tb;
+      font-size: 5vw;
+      height: unset;
+      width: 100%;
+      flex-direction: row-reverse;
+      justify-content: space-between;
+      background: #45331e url("../files/Stripped-Dark-Oak-Left.jpg");
+      background-size: auto 100%;
+      padding: min(1.8vw, 20px);
+    }
+    .back {
+      margin-top: unset;
+      margin-left: 3vw;
+    }
+    .subcontent {
+      background-size: 10vw;
+      border: 0.6vw solid #0006;
+      font-size: 4vw;
+    }
   }
 </style>

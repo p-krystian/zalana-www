@@ -1,0 +1,53 @@
+<div id="mc-ip">
+  offline
+</div>
+
+<style>
+  #mc-ip {
+    background-color: #000;
+    cursor: pointer;
+    padding: min(0.6vw, 12px);
+    width: 80%;
+    font-family: "Minecraft";
+    border: min(0.24vw, 5px) solid #ddd;
+    white-space: normal;
+    text-align: center;
+    color: #f55;
+    text-shadow: 0.15vw 0.15vw #fff3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    user-select: none;
+  }
+  #mc-ip.online {
+    color: #5f5;
+  }
+  #mc-ip::after {
+    content: "";
+    background-image: url("../files/odswiez.svg");
+    width: min(2.6vw, 52px);
+    height: min(2.6vw, 52px);
+    position: absolute;
+    right: min(1vw, 20px);
+    opacity: 0;
+    display: inline-block;
+    background-size: 100%;
+    transition: opacity 0.15s ease-in-out;
+  }
+  #mc-ip.online::after {
+    background-image: url("../files/kopiuj.svg");
+  }
+  #mc-ip:hover::after {
+    opacity: 100%;
+  }
+
+  @media (max-width: 500px) {
+    #mc-ip::after {
+      width: 3.6vw;
+      height: 3.6vw;
+      right: 1vw;
+      opacity: 1;
+    }
+  }
+</style>
