@@ -19,26 +19,44 @@ const editions: Edition[] = [
 ] as const;
 ---
 
-<div class="download">
+<div class="download" id="mc-download">
   <div class="choice">
     <span>Edycje:</span>
-    <div>
+    <div id="download-buttons">
       {editions.map((e) => <McButton>{e.name}</McButton>)}
     </div>
   </div>
-  {editions.map((e, i) => (
-    <div class={i === 0 ? "edition show" : "edition"}>
-      <div class="data">
-        <span>Edycja {e.name}</span>
-        <span>{e.date}</span>
-        <span>{e.version}</span>
+  {
+    editions.map((e, i) => (
+      <div class={i === 0 ? "edition show" : "edition"}>
+        <div class="data">
+          <span>Edycja {e.name}</span>
+          <span>{e.date}</span>
+          <span>{e.version}</span>
+        </div>
+        <McButton href={`${MC_FILES_CDN}${MC_FILES_CDN.endsWith("/") ? "" : "/"}${e.file}`}>
+          Pobierz
+        </McButton>
       </div>
-      <McButton href={`${MC_FILES_CDN}${MC_FILES_CDN.endsWith('/') ? '' : '/'}${e.file}`}>
-        Pobierz
-      </McButton>
-    </div>
-  ))}
+    ))
+  }
 </div>
+
+<script>
+  const buttons = document.querySelectorAll(
+    "#download-buttons button",
+  )! as NodeListOf<HTMLButtonElement>;
+  const editions = document.querySelectorAll(
+    "#mc-download .edition",
+  )! as NodeListOf<HTMLDivElement>;
+
+  buttons.forEach((btn, i) => {
+    btn.addEventListener("click", () => {
+      editions.forEach((edition) => edition.classList.remove("show"));
+      editions[i].classList.add("show");
+    });
+  });
+</script>
 
 <style>
   .download {
