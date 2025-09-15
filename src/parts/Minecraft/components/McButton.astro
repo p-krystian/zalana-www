@@ -1,0 +1,44 @@
+---
+interface Props {
+  href?: string;
+}
+
+const { href } = Astro.props;
+---
+
+{
+  href ? (
+    <a class="button" href={href}>
+      <slot />
+    </a>
+  ) : (
+    <button class="button">
+      <slot />
+    </button>
+  )
+}
+
+<style>
+  .button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    background: #6d6d6d;
+    color: #ddd;
+    border: min(0.34vw, 6px) solid #000;
+    text-shadow: min(0.15vw, 3px) min(0.15vw, 3px) #000a;
+    font-size: min(2.4vw, 48px);
+    padding: min(0.4vw, 8px) min(1vw, 20px);
+    font-family: "Minecraft";
+    cursor: pointer;
+    user-select: none;
+    box-shadow:
+      inset max(-0.3vw, -6px) max(-0.3vw, -6px) #0006,
+      inset min(0.2vw, 4px) min(0.2vw, 4px) #fff7;
+  }
+  .button:hover {
+    background-color: #6a6ab0;
+    color: #ffffa0;
+  }
+</style>

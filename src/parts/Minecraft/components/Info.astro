@@ -1,0 +1,62 @@
+---
+interface Props {
+  pluginsHref: `#${string}`;
+  rulesHref: `#${string}`;
+}
+
+const { pluginsHref, rulesHref } = Astro.props;
+---
+
+<table>
+  <tbody>
+    <tr> <td>Wersja Minecraft:</td> <td>1.21.3</td> </tr>
+    <tr> <td>Wersja Servera:</td> <td>Paper 1.21.3</td> </tr>
+    <tr>
+      <td>Wykonywanie kopii:</td>
+      <td>Codziennie o 2:00</td>
+    </tr>
+    <tr> <td>Historia kopii:</td> <td>Dwa dni wstecz</td> </tr>
+    <tr><td>Admini:</td> <td>Kryspel</td></tr>
+    <tr>
+      <td>Dostępne pluginy:</td>
+      <td>
+        <a href={pluginsHref}>PLUGINY</a>
+      </td>
+    </tr>
+    <tr>
+      <td>Regulamin:</td>
+      <td>
+        <a href={rulesHref}>ZASADY</a>
+      </td>
+    </tr>
+    <tr> <td>Limit HOMEów:</td> <td>9 + 1</td> </tr>
+  </tbody>
+</table>
+
+<style>
+  table {
+    text-shadow: 0.1vw 0.1vw 0.1vw #000c;
+  }
+  td:nth-child(2n) {
+    padding-left: min(2vw, 40px);
+  }
+  td {
+    border-top: min(0.2vw, 4px) solid #0006;
+  }
+  tr:nth-child(1) td {
+    border-top: none;
+  }
+  td a {
+    text-decoration: none;
+    color: #fff;
+    font-family: "Minecraft";
+  }
+  td a::after {
+    content: " >>";
+    transition: padding-left 0.15s ease-in-out;
+  }
+  td a:hover::after {
+    content: " >>";
+    padding-left: min(2vw, 40px);
+  }
+</style>
