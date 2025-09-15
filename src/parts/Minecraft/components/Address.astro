@@ -1,6 +1,58 @@
+---
+const MC_ADDRESS = import.meta.env.MC_ADDRESS;
+---
+
 <div id="mc-ip">
-  offline
+  <input type="text" value={MC_ADDRESS} readonly disabled />
 </div>
+
+<script>
+  const ipContainer = document.getElementById("mc-ip")!;
+  const ipInput = ipContainer.querySelector("input")!;
+  const ipAddress = ipInput.value;
+
+  async function copy() {
+    try {
+      await navigator.clipboard.writeText(ipAddress);
+    } catch {
+      ipInput.select();
+      document.execCommand("copy");
+      window.getSelection()?.removeAllRanges();
+    }
+
+    ipContainer.classList.add("copied");
+    setTimeout(() => {
+      ipContainer.classList.remove("copied");
+    }, 2000);
+  }
+
+  async function reloadStatus() {
+    const [ip, port] = ipAddress.split(":");
+    const params = new URLSearchParams(port ? { ip, port } : { ip });
+
+    const res = await fetch(`https://mcapi.us/server/status?${params.toString()}`, {
+      method: "GET",
+      cache: "no-cache",
+    });
+
+    const data = await res.json();
+    const isOnline = data?.online;
+
+    if (isOnline) {
+      ipContainer.classList.add("online");
+      ipContainer.removeEventListener("click", reloadStatus);
+      ipContainer.addEventListener("click", copy);
+    } else {
+      ipContainer.classList.remove("online");
+      ipContainer.removeEventListener("click", copy);
+      ipContainer.addEventListener("click", reloadStatus);
+    }
+  }
+
+  window.addEventListener("load", () => {
+    reloadStatus();
+  });
+</script>
 
 <style>
   #mc-ip {
@@ -12,27 +64,53 @@
     border: min(0.24vw, 5px) solid #ddd;
     white-space: normal;
     text-align: center;
-    color: #f55;
+    color: #5f5;
     text-shadow: 0.15vw 0.15vw #fff3;
     display: flex;
-    justify-content: center;
-    align-items: center;
     position: relative;
-    user-select: none;
   }
-  #mc-ip.online {
-    color: #5f5;
+  #mc-ip input {
+    background: transparent;
+    border: none;
+    font-size: 2.5vw;
+    width: 100%;
+    text-align: center;
+    user-select: none;
+    color: inherit;
+    text-shadow: inherit;
+    font-family: inherit;
+    pointer-events: none;
+  }
+  #mc-ip:not(.online) input {
+    display: none;
+  }
+  #mc-ip:not(.online)::before {
+    content: "offline";
+    color: #f55;
+    width: 100%;
+  }
+  #mc-ip.copied::before {
+    background-color: #000;
+    position: absolute;
+    content: "skopiowano";
+    color: inherit;
+    width: 100%;
+    left: 0;
+    z-index: 10;
   }
   #mc-ip::after {
     content: "";
     background-image: url("../files/odswiez.svg");
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
     width: min(2.6vw, 52px);
-    height: min(2.6vw, 52px);
+    top: 0;
+    height: 100%;
     position: absolute;
     right: min(1vw, 20px);
     opacity: 0;
     display: inline-block;
-    background-size: 100%;
     transition: opacity 0.15s ease-in-out;
   }
   #mc-ip.online::after {
@@ -43,11 +121,13 @@
   }
 
   @media (max-width: 500px) {
+    #mc-ip input{
+      font-size: 4vw;
+    }
     #mc-ip::after {
-      width: 3.6vw;
-      height: 3.6vw;
       right: 1vw;
       opacity: 1;
+      width: 4vw;
     }
   }
 </style>

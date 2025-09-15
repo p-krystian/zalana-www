@@ -1,5 +1,5 @@
 ---
-import NotifyArea from "../components/NotifyArea.astro";
+// import NotifyArea from "../components/NotifyArea.astro";
 import Header from "../components/Header.astro";
 import Navigation from "../components/Navigation.astro";
 import Footer from "../components/Footer.astro";
@@ -28,7 +28,7 @@ const OG_IMAGE = import.meta.env.OG_IMAGE_URL;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
   </head>
   <body>
-    <NotifyArea />
+    <!-- <NotifyArea /> -->
     <main>
       <Header id="top" />
       <Navigation
@@ -44,7 +44,7 @@ const OG_IMAGE = import.meta.env.OG_IMAGE_URL;
 
       <Footer />
     </main>
-    <div id="backload"></div>
+    <!-- <div id="backload"></div> -->
   </body>
 </html>
 
@@ -194,9 +194,9 @@ const OG_IMAGE = import.meta.env.OG_IMAGE_URL;
     margin-left: min(1vw, 20px);
     margin-right: min(1vw, 20px);
   }
-  #backload {
+  /*#backload {
     opacity: 0;
     position: fixed;
     z-index: -5;
-  }
+  }*/
 </style>

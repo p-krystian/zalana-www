@@ -3,6 +3,7 @@ interface ImportMetaEnv {
   readonly OG_IMAGE_URL: string;
   readonly RADIO_PLAYER_URL: string;
   readonly MC_FILES_CDN: string;
+  readonly MC_ADDRESS: string;
 }
 
 interface ImportMeta {
