@@ -53,6 +53,10 @@ const { id, name, backHref } = Astro.props;
     background-size: 100%;
     /*padding-top: min(1vw, 20px);*/
     padding-bottom: min(1vw, 20px);
+    user-select: none;
+  }
+  .subname span {
+    pointer-events: none;
   }
   .subcontent {
     width: 100%;
