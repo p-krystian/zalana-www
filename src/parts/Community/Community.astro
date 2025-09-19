@@ -113,7 +113,7 @@ const { id } = Astro.props;
       transform: none;
       transition: none;
     }
-    .community:hover .images,
+    .community:hover :global(.images),
     .community:hover::before {
       filter: blur(0);
     }
