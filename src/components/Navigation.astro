@@ -40,11 +40,18 @@ const { toTop, toCommunity, toRadio, toMinecraft } = Astro.props;
   const menuSwitch = document.querySelector("#menu-switch")!;
   const menu = document.querySelector("#menu")!;
 
-  menuSwitch.addEventListener("click", () => {
-    const newState = menu.getAttribute("aria-expanded") === "true" ? "false" : "true";
+  function toggleMenu(forceNewState?: "true" | "false") {
+    const newState = (
+      forceNewState
+    ) ?? (
+      menu.getAttribute("aria-expanded") === "true" ? "false" : "true"
+    );
     menuSwitch.setAttribute("aria-pressed", newState);
     menu.setAttribute("aria-expanded", newState);
-  });
+  }
+
+  menuSwitch.addEventListener("click", () => toggleMenu());
+  menu.childNodes.forEach((a) => a.addEventListener("click", () => toggleMenu("false")));
 </script>
 
 <style>
