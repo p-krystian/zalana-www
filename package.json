@@ -1,7 +1,7 @@
 {
   "name": "zalana-www",
   "type": "module",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
@@ -9,6 +9,6 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^5.13.7"
+    "astro": "^5.17.2"
   }
 }
